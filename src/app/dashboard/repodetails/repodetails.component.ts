@@ -10,9 +10,8 @@ import { RepoData } from 'src/app/types/RepoData';
 export class RepodetailsComponent implements OnInit {
   languages: any = [];
 
-  constructor(private apiService: ApiService) {}
-
   @Input() curr_repo: RepoData = {} as RepoData;
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
     if (this.curr_repo.languages_url) {

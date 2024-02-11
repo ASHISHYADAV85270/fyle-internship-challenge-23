@@ -1,19 +1,8 @@
-<div
-  class="flex flex-col justify-evenly w-full h-48 bg-[#374151] p-4 rounded text-white"
->
-  <h3 class="text-xl font-semibold capitalize">
-    {{ curr_repo.name }}
-  </h3>
-  <p class="lowercase">{{ curr_repo.description }}</p>
-  <app-languagedata [languages]="languages"></app-languagedata>
-  <p *ngIf="languages.length === 0">No languages found.</p>
-
-  <!-- <ul class="flex flex-wrap gap-4">
-    <li
-      *ngFor="let language of languages"
-      class="bg-gray-200 px-3 py-1 rounded"
-    >
-      {{ language }}
-    </li>
-  </ul> -->
+<div class="flex flex-col justify-evenly w-full h-48 bg-[#374151] p-4 rounded text-white">
+    <h3 class="text-xl font-semibold capitalize">
+        {{ curr_repo.name }}
+    </h3>
+    <p class="lowercase">{{ curr_repo.description }}</p>
+    <app-languagedata [languages]="languages"></app-languagedata>
+    <p *ngIf="languages.length === 0">No languages found.</p>
 </div>

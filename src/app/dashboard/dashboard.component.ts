@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserData } from '../types/UserData';
 import { RepoData } from '../types/RepoData';
 
@@ -7,7 +7,7 @@ import { RepoData } from '../types/RepoData';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   userdata: UserData = {
     username: '',
     userAvatar: '',
@@ -17,12 +17,53 @@ export class DashboardComponent {
     isValidUser: false,
     githubUrl: '',
   };
+  repos: RepoData[] = [];
+  paginatedRepos: RepoData[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 6;
 
-  repos: any = [];
-  configureUserData(event: any): void {
-    if (event === null) {
-      return;
+  ngOnInit() {
+    this.updatePagination();
+  }
+
+  updatePagination() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.paginatedRepos = this.repos.slice(startIndex, endIndex);
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages()) {
+      this.currentPage++;
+      this.updatePagination();
     }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updatePagination();
+    }
+  }
+
+  totalPages() {
+    return Math.ceil(this.repos.length / this.itemsPerPage);
+  }
+  goToPage(page: number) {
+    this.currentPage = page;
+    this.updatePagination();
+  }
+  getPageNumbers(): number[] {
+    const pageNumbers = [];
+    for (let i = 1; i <= this.totalPages(); i++) {
+      pageNumbers.push(i);
+    }
+    return pageNumbers;
+  }
+  configureUserData(event: any): void {
+    if (!event) return;
+
+    const [userData, reposData] = event;
 
     const {
       name: username,
@@ -31,18 +72,19 @@ export class DashboardComponent {
       location,
       twitter_username: userTwitterUrl,
       html_url: githubUrl,
-    } = event[0];
+    } = userData;
 
     this.userdata = {
       username,
       userAvatar,
       userBio,
-      userLocation: location ?? 'Location Not Provided',
-      userTwitterUrl: userTwitterUrl ?? 'Twitter Not Provided',
-      isValidUser: this.userdata.username === '',
+      userLocation: location || 'Location Not Provided',
+      userTwitterUrl: userTwitterUrl || 'Twitter Not Provided',
+      isValidUser: true,
       githubUrl,
     };
 
-    this.repos = event[1];
+    this.repos = reposData;
+    this.updatePagination();
   }
 }
