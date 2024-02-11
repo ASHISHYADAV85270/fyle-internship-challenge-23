@@ -1,3 +1,6 @@
-<app-usersearch></app-usersearch>
-<app-profile></app-profile>
-<app-repodetails></app-repodetails>
+<app-usersearch
+  (userdataChange)="configureUserData($event)"
+  *ngIf="!userdata.isValidUser"
+></app-usersearch>
+<app-profile *ngIf="userdata.isValidUser"></app-profile>
+<app-repodetails *ngIf="userdata.isValidUser"></app-repodetails>

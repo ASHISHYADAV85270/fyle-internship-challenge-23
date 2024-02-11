@@ -13,10 +13,10 @@ export class ApiService {
       `https://api.github.com/users/${githubUsername}`
     );
   }
-
-  getConsole() {
-    console.log('I am called');
-  }
-
   // implement getRepos method by referring to the documentation. Add proper types for the return type and params
+  getRepos(username: string) {
+    return this.httpClient.get(
+      `https://api.github.com/users/${username}/repos`
+    );
+  }
 }
