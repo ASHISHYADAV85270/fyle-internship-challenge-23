@@ -1,6 +1,18 @@
 <app-usersearch
-  (userdataChange)="configureUserData($event)"
   *ngIf="!userdata.isValidUser"
+  (userdataChange)="configureUserData($event)"
+  class="p-4"
 ></app-usersearch>
-<app-profile *ngIf="userdata.isValidUser"></app-profile>
-<app-repodetails *ngIf="userdata.isValidUser"></app-repodetails>
+
+<ng-container *ngIf="userdata.isValidUser">
+  <app-profile [userdata]="userdata" class="p-4"></app-profile>
+</ng-container>
+<div class="flex flex-wrap gap-[30px] w-full justify-around mt-3 p-4">
+  <ng-container *ngFor="let curr_repo of repos">
+    <app-repodetails
+      *ngIf="userdata.isValidUser"
+      [curr_repo]="curr_repo"
+      class="w-[40%]"
+    ></app-repodetails>
+  </ng-container>
+</div>

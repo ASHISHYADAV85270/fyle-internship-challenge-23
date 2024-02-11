@@ -14,9 +14,10 @@ export class ApiService {
     );
   }
   // implement getRepos method by referring to the documentation. Add proper types for the return type and params
-  getRepos(username: string) {
-    return this.httpClient.get(
-      `https://api.github.com/users/${username}/repos`
-    );
+  getRepos(repos_url: string) {
+    return this.httpClient.get(repos_url);
+  }
+  getLanguages(languages_url: string) {
+    return this.httpClient.get(languages_url);
   }
 }

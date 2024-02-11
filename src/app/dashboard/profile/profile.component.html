@@ -1,0 +1,27 @@
+<div class="flex justify-start gap-x-[60px] items-center w-full h-1/5">
+  <div class="ml-[48px] flex flex-col items-center gap-2">
+    <img
+      [src]="userdata.userAvatar"
+      alt="User Avatar"
+      class="w-52 h-52 rounded-full outline-2 outline-offset-4"
+    />
+    <a
+      *ngIf="userdata.githubUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+      [href]="userdata.githubUrl"
+      class="link text-white font-semibold"
+      >GitHub Profile</a
+    >
+  </div>
+  <div class="flex flex-col items-start gap-2">
+    <h2 class="text-2xl font-bold truncate text-white">
+      {{ userdata.username }}
+    </h2>
+    <p class="truncate text-white">{{ userdata.userBio }}</p>
+    <p class="truncate text-white">{{ userdata.userLocation }}</p>
+    <a [href]="userdata.userTwitterUrl" class="link truncate text-white"
+      >Twitter : {{ userdata.userTwitterUrl }}</a
+    >
+  </div>
+</div>
