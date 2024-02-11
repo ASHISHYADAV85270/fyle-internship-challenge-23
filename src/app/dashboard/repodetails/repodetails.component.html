@@ -5,13 +5,15 @@
     {{ curr_repo.name }}
   </h3>
   <p class="lowercase">{{ curr_repo.description }}</p>
-  <ul class="flex flex-wrap gap-4">
+  <app-languagedata [languages]="languages"></app-languagedata>
+  <p *ngIf="languages.length === 0">No languages found.</p>
+
+  <!-- <ul class="flex flex-wrap gap-4">
     <li
       *ngFor="let language of languages"
       class="bg-gray-200 px-3 py-1 rounded"
     >
       {{ language }}
     </li>
-  </ul>
-  <p *ngIf="languages.length === 0">No languages found.</p>
+  </ul> -->
 </div>

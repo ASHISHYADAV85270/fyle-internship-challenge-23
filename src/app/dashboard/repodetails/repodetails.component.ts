@@ -19,8 +19,7 @@ export class RepodetailsComponent implements OnInit {
       this.apiService
         .getLanguages(this.curr_repo.languages_url)
         .subscribe((data: any) => {
-          this.languages = data;
-          console.log(this.languages);
+          this.languages = Object.keys(data).slice(0, 5);
         });
     }
   }

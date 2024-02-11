@@ -8,6 +8,7 @@ import { ProfileComponent } from './dashboard/profile/profile.component';
 import { RepodetailsComponent } from './dashboard/repodetails/repodetails.component';
 import { UsersearchComponent } from './dashboard/usersearch/usersearch.component';
 import { FormsModule } from '@angular/forms';
+import { LanguagedataComponent } from './dashboard/repodetails/languagedata/languagedata.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     ProfileComponent,
     RepodetailsComponent,
     UsersearchComponent,
+    LanguagedataComponent,
   ],
   imports: [BrowserModule, HttpClientModule, FormsModule],
   providers: [],
